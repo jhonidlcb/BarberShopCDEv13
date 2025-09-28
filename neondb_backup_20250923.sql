@@ -2,7 +2,7 @@
 -- PostgreSQL database dump
 --
 
-\restrict 1MxIRHhWUXznl6pzqeUGx4tJL4UZNqTc74hOV1gGtks7Gq22LDf9e9PxrGahoPL
+\restrict 6mxXz0dq0teJx57oqLyWxGNMYqLr5ekVEMoIPRyKCZL9AUyhNapRkKp3tQ2SqAS
 
 -- Dumped from database version 17.5 (84bec44)
 -- Dumped by pg_dump version 17.6 (Ubuntu 17.6-2.pgdg24.04+1)
@@ -320,7 +320,8 @@ CREATE TABLE public.employee_stats (
     completed_appointments integer DEFAULT 0,
     total_revenue numeric(12,2) DEFAULT 0,
     created_at timestamp without time zone DEFAULT now() NOT NULL,
-    updated_at timestamp without time zone DEFAULT now() NOT NULL
+    updated_at timestamp without time zone DEFAULT now() NOT NULL,
+    revenue_by_currency jsonb
 );
 
 
@@ -618,7 +619,7 @@ COPY public.admin_users (id, username, email, password, role, active, created_at
 --
 
 COPY public.appointments (id, customer_name, customer_phone, customer_email, service_type, appointment_date, appointment_time, notes, status, created_at, phone_country_code, phone_validated, amount_paid, payment_currency, attended_by_employee_id) FROM stdin;
-110f9d4c-a719-4685-9620-501fead5ea99	jhoni	+54 1170627214		1bdc6481-6d1e-43f3-87fe-63469f89b5c3	2025-09-26	14:30:00	probando	confirmed	2025-09-25 22:27:25.488	\N	f	25000.00	PYG	641ebdf4-1a6e-4265-bdfa-a4fd04ecd009
+110f9d4c-a719-4685-9620-501fead5ea99	jhoni	+54 1170627214		1bdc6481-6d1e-43f3-87fe-63469f89b5c3	2025-09-26	14:30:00	probando	completed	2025-09-25 22:27:25.488	\N	f	25.00	USD	641ebdf4-1a6e-4265-bdfa-a4fd04ecd009
 \.
 
 
@@ -684,7 +685,8 @@ ff73b705-32ea-4c9d-96ca-dff2712c1330	641ebdf4-1a6e-4265-bdfa-a4fd04ecd009	eyJhbG
 -- Data for Name: employee_stats; Type: TABLE DATA; Schema: public; Owner: neondb_owner
 --
 
-COPY public.employee_stats (id, employee_id, month_year, total_appointments, completed_appointments, total_revenue, created_at, updated_at) FROM stdin;
+COPY public.employee_stats (id, employee_id, month_year, total_appointments, completed_appointments, total_revenue, created_at, updated_at, revenue_by_currency) FROM stdin;
+7a7e791a-4583-4c63-b69c-c31e0067c468	641ebdf4-1a6e-4265-bdfa-a4fd04ecd009	2025-09	1	1	25000.00	2025-09-28 00:08:34.201	2025-09-28 00:08:34.017	\N
 \.
 
 
@@ -1346,5 +1348,5 @@ ALTER DEFAULT PRIVILEGES FOR ROLE cloud_admin IN SCHEMA public GRANT ALL ON TABL
 -- PostgreSQL database dump complete
 --
 
-\unrestrict 1MxIRHhWUXznl6pzqeUGx4tJL4UZNqTc74hOV1gGtks7Gq22LDf9e9PxrGahoPL
+\unrestrict 6mxXz0dq0teJx57oqLyWxGNMYqLr5ekVEMoIPRyKCZL9AUyhNapRkKp3tQ2SqAS
 
